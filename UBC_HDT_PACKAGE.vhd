@@ -9,7 +9,7 @@ package types is
     constant OUTPUT_LAYER_NEURONS : positive := 1; -- Number of neurons in output layer
     type bias_neuron_type   is array (0 to HIDDEN_LAYER_NEURONS - 1) of signed ((NEURON_BIT_SIZE - 1) downto 0);
     type weight_neuron_type is array (0 to HIDDEN_LAYER_NEURONS - 1, 0 to INPUT_LAYER_NEURONS - 1) of signed((NEURON_BIT_SIZE - 1) downto 0);
-    type input_neuron_type  is array (0 to INPUT_LAYER_NEURONS  - 1)  of signed ((NEURON_BIT_SIZE - 1) downto 0);
+    type input_neuron_type  is array (0 to INPUT_LAYER_NEURONS  - 1, 0 to 0) of signed ((NEURON_BIT_SIZE - 1) downto 0);
     type hidden_neuron_type is array (0 to HIDDEN_LAYER_NEURONS - 1) of signed ((NEURON_BIT_SIZE - 1) downto 0);
     type output_neuron_type is array (0 to HIDDEN_LAYER_NEURONS - 1) of signed (((NEURON_BIT_SIZE * 2) - 1) downto 0);
 end types;

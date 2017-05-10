@@ -36,22 +36,29 @@ dut: fprop port map(CLOCK_27 => CLOCK_27_TB,
    		    OUTPUTS  => OUTPUTS_TB);
 process
 begin
-	RESET_TB <= '0';
-	OUTPUTS_TB(0) <= to_signed(2, NEURON_BIT_SIZE);
+
+	-- Initialize Inputs
 	for i in INPUTS_TB'range loop
-		INPUTS_TB(i) <= "00";
+		INPUTS_TB(i, 0) <= to_signed(i, NEURON_BIT_SIZE);
 	end loop;
-
+	
+	-- Initialize Biases
 	for j in BIASES_TB'range loop
-		BIASES_TB(j) <= "01";
+		BIASES_TB(j) <= "00";
 	end loop;
 
+	-- Initialize Weights
 	for k in WEIGHTS_TB'range(1) loop
 		for l in WEIGHTS_TB'range(2) loop
-			WEIGHTS_TB(0, k) <= "10";
+			WEIGHTS_TB(k, l) <= to_signed(k, NEURON_BIT_SIZE);
 		end loop;
 	end loop;
-	wait;
+
+	RESET_TB <= '0';
+	wait for 10 ns;
+	RESET_TB <= '1';
+
+	wait for 100 ns;	
 end process;
 
  process
