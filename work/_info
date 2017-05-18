@@ -1,0 +1,142 @@
+m255
+K3
+13
+cModel Technology
+dC:\Users\StewPC\Documents\UBC_HDT
+Efprop
+Z0 w1495082335
+Z1 DPx4 work 5 types 0 22 o765WLEfWN]<5PhInkW5D0
+Z2 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z3 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z4 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z5 dC:\Users\StewPC\Documents\UBC_HDT\NNHardware
+Z6 8C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop.vhd
+Z7 FC:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop.vhd
+l0
+L8
+VPf6gz3<PCejWMTj80KG>j0
+Z8 OV;C;10.1d;51
+33
+Z9 !s108 1495082628.251000
+Z10 !s90 -reportprogress|300|-work|work|-2008|-explicit|C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop.vhd|
+Z11 !s107 C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop.vhd|
+Z12 o-work work -2008 -explicit -O0
+Z13 tExplicit 1
+!s100 aCcP;0fEe0a>el?NzUjf43
+!i10b 1
+Abehavioural
+R1
+R2
+R3
+R4
+DEx4 work 5 fprop 0 22 Pf6gz3<PCejWMTj80KG>j0
+l20
+L18
+VzBecm`WLoHRMgSR?dGL4D0
+R8
+33
+R9
+R10
+R11
+R12
+R13
+!s100 DZ9b5:T3kP_YY2jD]ILo;3
+!i10b 1
+Efprop_tb
+Z14 w1495082337
+R1
+R2
+R3
+R4
+R5
+Z15 8C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop_tb.vhd
+Z16 FC:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop_tb.vhd
+l0
+L6
+V1R`UEHZ7m6ITloZm079Ia2
+R8
+32
+Z17 !s108 1495082628.391000
+Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop_tb.vhd|
+Z19 !s107 C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop_tb.vhd|
+Z20 o-work work -2002 -explicit -O0
+R13
+!s100 `YnO9mY1f0nTiJTO<R7Gl3
+!i10b 1
+Abehavioural
+R1
+R2
+R3
+R4
+DEx4 work 8 fprop_tb 0 22 1R`UEHZ7m6ITloZm079Ia2
+l27
+L9
+V7bW^FeN2W@QNM79f;LO1;1
+R8
+32
+R17
+R18
+R19
+R20
+R13
+!s100 45_1S9f5d>mONS4E84feJ2
+!i10b 1
+Enn_top
+Z21 w1495082333
+R1
+R2
+R3
+R4
+R5
+Z22 8C:/Users/StewPC/Documents/UBC_HDT/NNHardware/nn_top.vhd
+Z23 FC:/Users/StewPC/Documents/UBC_HDT/NNHardware/nn_top.vhd
+l0
+L6
+VzCnEaK<EKbiIhWkKP_=4G2
+R8
+32
+Z24 !s108 1495082628.512000
+Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/StewPC/Documents/UBC_HDT/NNHardware/nn_top.vhd|
+Z26 !s107 C:/Users/StewPC/Documents/UBC_HDT/NNHardware/nn_top.vhd|
+R20
+R13
+!s100 361EWZ`DMRhME90Wl6OQ71
+!i10b 1
+Abehavioural
+R1
+R2
+R3
+R4
+DEx4 work 6 nn_top 0 22 zCnEaK<EKbiIhWkKP_=4G2
+l15
+L12
+Vi@14@;:@?l98h=gN1DR<52
+!s100 O^:iYBZ@LPzc9:bTd<7f_1
+R8
+32
+R24
+R25
+R26
+R20
+R13
+!i10b 1
+Ptypes
+R2
+R3
+R4
+w1495082459
+R5
+8C:/Users/StewPC/Documents/UBC_HDT/NNHardware/UBC_HDT_PACKAGE.vhd
+FC:/Users/StewPC/Documents/UBC_HDT/NNHardware/UBC_HDT_PACKAGE.vhd
+l0
+L5
+Vo765WLEfWN]<5PhInkW5D0
+!s100 YTiWfQB^W^oJ1RS1B@WJN2
+R8
+32
+!i10b 1
+!s108 1495082628.640000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/StewPC/Documents/UBC_HDT/NNHardware/UBC_HDT_PACKAGE.vhd|
+!s107 C:/Users/StewPC/Documents/UBC_HDT/NNHardware/UBC_HDT_PACKAGE.vhd|
+R20
+R13

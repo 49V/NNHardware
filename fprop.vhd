@@ -33,13 +33,13 @@ begin
 		-- The layers shall be denoted as input, hidden, and output layers, or L1, L2, and L3
 		-- Where k is the kth neuron in the l + 1 layer, and j is the jth neuron in the lth layer
 		-- Outputs O[N2, 1] = Wkj[N2, N1] * Ij[N1, 1]
-		for i in WEIGHTS'range(1) loop
-			for j in INPUTS'range(2) loop
-				for k in WEIGHTS'range(2) loop
-				OUTPUTS(i) <= WEIGHTS(i, k) * INPUTS(k, j); 
+			for i in WEIGHTS'range(1) loop
+				for j in INPUTS'range(2) loop
+					for k in WEIGHTS'range(2) loop
+					OUTPUTS(i) <= WEIGHTS(i, k) * INPUTS(k, j); 
+					end loop;
 				end loop;
-			end loop;
-		end loop;	
+			end loop;	
 		end if;
 	end if;
 	end process;

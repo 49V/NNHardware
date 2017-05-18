@@ -1,0 +1,41 @@
+C:/Users/StewPC/Documents/UBC_HDT/NNHardware/UBC_HDT_PACKAGE.vhd {1 {vcom -work work -2002 -explicit C:/Users/StewPC/Documents/UBC_HDT/NNHardware/UBC_HDT_PACKAGE.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling package types
+
+} {} {}} C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop_tb.vhd {1 {vcom -work work -2002 -explicit C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop_tb.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package types
+-- Compiling entity fprop_tb
+-- Compiling architecture behavioural of fprop_tb
+
+} {} {}} C:/Users/StewPC/Documents/UBC_HDT/NNHardware/nn_top.vhd {1 {vcom -work work -2002 -explicit C:/Users/StewPC/Documents/UBC_HDT/NNHardware/nn_top.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package types
+-- Compiling entity nn_top
+-- Compiling architecture behavioural of nn_top
+
+} {} {}} C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop.vhd {2 {vcom -work work -2008 -explicit C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package types
+-- Compiling entity fprop
+-- Compiling architecture behavioural of fprop
+** Warning: [14] C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop.vhd(29): (vcom-1272) Length of expected is 4; length of actual is 1.
+
+
+} {} {}}
