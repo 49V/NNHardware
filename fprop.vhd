@@ -14,6 +14,7 @@ entity fprop is
 	     OUTPUTS : out output_neuron_type
 	     );
 end fprop;
+-- Weighted Inputs
 
 architecture behavioural of fprop is
 	signal q: std_logic;
@@ -21,35 +22,37 @@ begin
 
 	process(all)
 	begin
-	-- If RESET is enabled, initialize the OUTPUTS to 0
-	if(rising_edge(CLOCK_27)) then
+	-- If RESET is enabled, initialize the Z to 0
+	
 
-		if(RESET = '0') then
-			for i in OUTPUTS'range(1) loop
-				OUTPUTS(i) <= to_signed(0, NEURON_BIT_SIZE - 1);
-			end loop;	
+	if(RESET = '0') then
+		OUTPUTS(0) <= to_signed(0, NEURON_BIT_SIZE * 2);
+		OUTPUTS(1) <= to_signed(0, NEURON_BIT_SIZE * 2);
+		OUTPUTS(2) <= to_signed(0, NEURON_BIT_SIZE * 2);
 
-		else
+	elsif(RESET = '1') then
+		if(rising_edge(CLOCK_27)) then
 		-- The layers shall be denoted as input, hidden, and output layers, or L1, L2, and L3
 		-- Where k is the kth neuron in the l + 1 layer, and j is the jth neuron in the lth layer
+<<<<<<< HEAD
 		-- Outputs O[N2, 1] = Wkj[N2, N1] * Ij[N1, 1]
 			for i in WEIGHTS'range(1) loop
 				for j in INPUTS'range(2) loop
 					for k in WEIGHTS'range(2) loop
 					OUTPUTS(i) <= WEIGHTS(i, k) * INPUTS(k, j); 
 					end loop;
+=======
+		-- OUTPUTS O[N2, 1] = Wkj[N2, N1] * Ij[N1, 1]
+		for i in WEIGHTS'range(1) loop
+			for j in INPUTS'range(2) loop
+				for k in WEIGHTS'range(2) loop
+				OUTPUTS(i) <= WEIGHTS(i, k) * INPUTS(k, j); 
+>>>>>>> Moshe
 				end loop;
 			end loop;	
 		end if;
 	end if;
 	end process;
 	
-	process(all)
-	begin
-
-	if(rising_edge(CLOCK_27)) then
-
-	end if;
-	end process;
 
 end architecture;

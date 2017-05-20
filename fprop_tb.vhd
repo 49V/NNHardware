@@ -26,8 +26,6 @@ signal OUTPUTS_TB  : output_neuron_type;
 
 begin
 
-
-
 dut: fprop port map(CLOCK_27 => CLOCK_27_TB,
                     RESET    => RESET_TB,
 		    INPUTS   => INPUTS_TB,
@@ -36,10 +34,19 @@ dut: fprop port map(CLOCK_27 => CLOCK_27_TB,
    		    OUTPUTS  => OUTPUTS_TB);
 process
 begin
+    
+    CLOCK_27_TB <= '0';
+    wait for 10 ns;
+    CLOCK_27_TB <= '1';
+    wait for 10 ns;
+end process;
+
+process
+begin
 
 	-- Initialize Inputs
 	for i in INPUTS_TB'range loop
-		INPUTS_TB(i, 0) <= to_signed(i, NEURON_BIT_SIZE);
+		INPUTS_TB(i, 0) <= to_signed(i + 1, NEURON_BIT_SIZE);
 	end loop;
 	
 	-- Initialize Biases
@@ -60,14 +67,6 @@ begin
 
 	wait for 100 ns;	
 end process;
-
- process
-  begin
-    wait for 10 ns;
-    CLOCK_27_TB <= '0';
-    wait for 10 ns;
-    CLOCK_27_TB <= '1';
-  end process;
 
 end architecture;
 			
