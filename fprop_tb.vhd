@@ -46,18 +46,22 @@ begin
 
 	-- Initialize Inputs
 	for i in INPUTS_TB'range loop
-		INPUTS_TB(i, 0) <= to_signed(i + 1, NEURON_BIT_SIZE);
+		INPUTS_TB(i, 0) <= to_unsigned(i + 1, NEURON_BIT_SIZE);
+		report "INPUTS: The value of i (rows) is " & integer'image(i);
 	end loop;
 	
 	-- Initialize Biases
 	for j in BIASES_TB'range loop
 		BIASES_TB(j) <= "00";
+		report "BIASES: The value of j (rows) is " & integer'image(j);
 	end loop;
 
 	-- Initialize Weights
 	for k in WEIGHTS_TB'range(1) loop
 		for l in WEIGHTS_TB'range(2) loop
-			WEIGHTS_TB(k, l) <= to_signed(k, NEURON_BIT_SIZE);
+			WEIGHTS_TB(k, l) <= to_unsigned(k, NEURON_BIT_SIZE);
+			report "WEIGHTS: The value of k (rows) is " & integer'image(k);
+			report "WEIGHTS: The value of l (columns) is " & integer'image(l);
 		end loop;
 	end loop;
 
