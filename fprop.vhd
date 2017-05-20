@@ -51,7 +51,7 @@ begin
 					end loop;
 				end loop;	
 
-				if(zed(i) > 0) then
+				if((zed(i) + BIASES(i))> 0) then
 					OUTPUTS(i) <= to_signed(1, NEURON_BIT_SIZE*2);
 				else
 					OUTPUTS(i) <= to_signed(0, NEURON_BIT_SIZE*2);

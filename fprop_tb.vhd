@@ -51,7 +51,7 @@ begin
 	
 	-- Initialize Biases
 	for j in BIASES_TB'range loop
-		BIASES_TB(j) <= "00";
+		BIASES_TB(j) <= to_signed(j + 1, NEURON_BIT_SIZE);
 	end loop;
 
 	-- Initialize Weights
