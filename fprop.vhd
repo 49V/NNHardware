@@ -37,8 +37,7 @@ begin
 		ZED(2) := to_unsigned(0, NEURON_BIT_SIZE * 2);
 		FLAG := 0;
 
-	elsif((RESET = '1') AND (FLAG = 0)) then
-		if(rising_edge(CLOCK_27)) then
+	elsif((rising_edge(CLOCK_27)) AND (FLAG = 0)) then
 		-- The layers shall be denoted as input, hidden, and output layers, or L1, L2, and L3
 		-- Where k is the kth neuron in the l + 1 layer, and j is the jth neuron in the lth layer
 		-- OUTPUTS O[N2, 1] = Wkj[N2, N1] * Ij[N1, 1]
@@ -48,18 +47,28 @@ begin
 					ZED(i) := ZED(i) + WEIGHTS(i, k) * INPUTS(k, j);
 
 					reportInteger := to_integer(ZED(i));
-					report "i: " & integer'image(i);
-					report "j: " & integer'image(j);
-					report "k: " & integer'image(k);
- 					report "ZED (i); " & integer'image(reportInteger);
+					--report "i: " & integer'image(i);
+					--report "j: " & integer'image(j);
+					--report "k: " & integer'image(k);
+ 					--report "ZED (i); " & integer'image(reportInteger);
 					end loop;
 				end loop;
 			end loop;	
-		OUTPUTS <= ZED;
+		
+			for i in OUTPUTS'range(1) loop
+
+				if (ZED(i) > to_unsigned(0, NEURON_BIT_SIZE * 2)) then
+				OUTPUTS(i) <= to_unsigned(1, NEURON_BIT_SIZE * 2);
+
+				else
+				OUTPUTS(i) <= to_unsigned(0, NEURON_BIT_SIZE * 2);
+				end if;
+
+			end loop;
 		FLAG := 1;
-		end if;
 	end if;
 	end process;
-	
+
+
 
 end architecture;
