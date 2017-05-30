@@ -7,65 +7,102 @@ use work.types.all;
 -- i.e only propagate one layer
 entity fprop is
 	Port(CLOCK_27: in std_logic;
-	     RESET   : in std_logic;
-	     INPUTS  : in input_neuron_type;
-	     WEIGHTS : in weight_neuron_type;
-	     BIASES  : in bias_neuron_type;
-	     OUTPUTS : out output_neuron_type
+	     reset   : in std_logic;
+	     inputs  : in input_neuron_type;
+	     inputWeights : in weight_input_neuron_type;
+	     hiddenWeights : in weight_hidden_neuron_type;
+	     hiddenBiases  : in bias_hidden_neuron_type;
+	     outputBiases  : in bias_output_neuron_type;
+	     outputs : out output_neuron_type
 	     );
+-- Consider restructuring weights and biases into a single record
+
 end fprop;
--- Weighted Inputs
+-- Weighted inputs
 
 architecture behavioural of fprop is
-	signal q: std_logic;
-begin
+	-- These are our different states for fprop (Init, input-> hidden, hidden->output, done)
+	TYPE STATE_TYPE is (A, B, C, D, E); 
+		signal state : STATE_TYPE;
+begin		 
 
 	process(all)
-	variable ZED: output_neuron_type;
+	variable hiddenZed: zed_hidden_neuron_type := ((others => (others => "0000")));
+	variable outputZed: zed_output_neuron_type := ((others => (others => "0000")));
+	variable hiddenOutputs: hidden_neuron_type := ((others => (others => "00")));
 	variable reportInteger: integer;
-	variable FLAG: integer;
 	begin
-	-- If RESET is enabled, initialize the Z to 0
 	
+	if(reset) then
+		state <= A;
 
-	if(RESET = '0') then
-		OUTPUTS(0) <= to_unsigned(0, NEURON_BIT_SIZE * 2);
-		OUTPUTS(1) <= to_unsigned(0, NEURON_BIT_SIZE * 2);
-		OUTPUTS(2) <= to_unsigned(0, NEURON_BIT_SIZE * 2);
-		ZED(0) := to_unsigned(0, NEURON_BIT_SIZE * 2);
-		ZED(1) := to_unsigned(0, NEURON_BIT_SIZE * 2);
-		ZED(2) := to_unsigned(0, NEURON_BIT_SIZE * 2);
-		FLAG := 0;
-
-	elsif((rising_edge(CLOCK_27)) AND (FLAG = 0)) then
+	elsif (rising_edge(CLOCK_27)) then
 		-- The layers shall be denoted as input, hidden, and output layers, or L1, L2, and L3
 		-- Where k is the kth neuron in the l + 1 layer, and j is the jth neuron in the lth layer
-		-- OUTPUTS O[N2, 1] = Wkj[N2, N1] * Ij[N1, 1]
-			for i in WEIGHTS'range(1) loop
-				for j in INPUTS'range(2) loop
-					for k in WEIGHTS'range(2) loop
-					ZED(i) := ZED(i) + WEIGHTS(i, k) * INPUTS(k, j);
+		-- outputs O[N2, 1] = Wkj[N2, N1] * Ij[N1, 1]
+		case state is
+			
+			-- Input Layer to Hidden Layer
+			when A =>
+				for i in inputWeights'range(1) loop
+					for j in inputs'range(2) loop
+						for k in inputWeights'range(2) loop
+						hiddenZed(i, 0) := (hiddenZed(i, 0) + inputWeights(i, k) * inputs(k, j));
+					
+						-- Perceptron Activation function
+						if (hiddenZed(i, 0) > to_unsigned(0, NEURON_BIT_SIZE * 2)) then
+							hiddenOutputs(i, 0) := to_unsigned(1, NEURON_BIT_SIZE);
+						else
+							hiddenOutputs(i, 0) := to_unsigned(0, NEURON_BIT_SIZE);
+						end if;
 
-					reportInteger := to_integer(ZED(i));
-					--report "i: " & integer'image(i);
-					--report "j: " & integer'image(j);
-					--report "k: " & integer'image(k);
- 					--report "ZED (i); " & integer'image(reportInteger);
+						end loop;
 					end loop;
 				end loop;
-			end loop;	
-		
-			for i in OUTPUTS'range(1) loop
 
-				if (ZED(i) > to_unsigned(0, NEURON_BIT_SIZE * 2)) then
-				OUTPUTS(i) <= to_unsigned(1, NEURON_BIT_SIZE * 2);
+				report "hiddenZed Index 0 " & integer'image(to_integer(hiddenZed(0,0)));
+				report "hiddenZed Index 1 " & integer'image(to_integer(hiddenZed(1,0)));				
+				state <= B;
+			
+			-- Hidden Layer to Output Layer
+			when B =>
+				for i in hiddenWeights'range(1) loop
+					for j in hiddenOutputs'range(2) loop
+						for k in hiddenWeights'range(2) loop
+						report "-------------------INDEX i -----------------" & integer'image(i);
+						report "-------------------INDEX j -----------------" & integer'image(j);
+						report "-------------------INDEX k------------------" & integer'image(k);
+						outputZed(i, 0) := outputZed(i, 0) + hiddenWeights(i, k) * hiddenOutputs(k, j);
 
-				else
-				OUTPUTS(i) <= to_unsigned(0, NEURON_BIT_SIZE * 2);
-				end if;
+						if(outputZed(i, 0) > to_unsigned(0, NEURON_BIT_SIZE * 2)) then
+							outputs(i, 0) <= to_unsigned(1, NEURON_BIT_SIZE);
+						else
+							outputs(i, 0) <= to_unsigned(0, NEURON_BIT_SIZE);
+						end if;
 
-			end loop;
-		FLAG := 1;
+						end loop;
+					end loop;
+				end loop;
+
+				report "outputZed is " & integer'image(to_integer(outputZed(0,0)));
+
+				state <= C;
+				
+			-- Output Layer
+			when C =>
+
+				state <= D;
+
+			-- Forward propagation complete
+			when D =>
+				report "Forward propagation complete";
+				state <= D;		
+
+			when others =>
+				state <= A;
+
+			end case;
+
 	end if;
 	end process;
 

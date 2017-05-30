@@ -9,67 +9,81 @@ end fprop_tb;
 architecture behavioural of fprop_tb is
 	component fprop
 	Port(CLOCK_27 : in std_logic;
-	     RESET    : in std_logic;
-	     INPUTS   : in input_neuron_type;
-             WEIGHTS  : in weight_neuron_type;
-	     BIASES   : in bias_neuron_type;
-             OUTPUTS  : out output_neuron_type
+	     reset    : in std_logic;
+	     inputs   : in input_neuron_type;
+             inputWeights  : in weight_input_neuron_type;
+	     hiddenWeights : in weight_hidden_neuron_type;
+	     hiddenBiases : in bias_hidden_neuron_type;
+	     outputBiases : in bias_output_neuron_type;
+             outputs  : out output_neuron_type
 	     );
 	end component;
 
-signal CLOCK_27_TB: std_logic;
-signal RESET_TB   : std_logic;
-signal INPUTS_TB  : input_neuron_type;
-signal WEIGHTS_TB : weight_neuron_type;
-signal BIASES_TB  : bias_neuron_type;
-signal OUTPUTS_TB  : output_neuron_type;
+signal CLOCK_27TB: std_logic;
+signal resetTB   : std_logic;
+signal inputsTB  : input_neuron_type;
+signal inputWeightsTB : weight_input_neuron_type;
+signal hiddenWeightsTB : weight_hidden_neuron_type;
+signal hiddenBiasesTB  : bias_hidden_neuron_type;
+signal outputBiasesTB : bias_output_neuron_type;
+signal outputsTB  : output_neuron_type;
 
 begin
 
-dut: fprop port map(CLOCK_27 => CLOCK_27_TB,
-                    RESET    => RESET_TB,
-		    INPUTS   => INPUTS_TB,
-		    WEIGHTS  => WEIGHTS_TB,
-		    BIASES   => BIASES_TB,
-   		    OUTPUTS  => OUTPUTS_TB);
+dut: fprop port map(CLOCK_27 => CLOCK_27TB,
+                    reset    => resetTB,
+		    inputs   => inputsTB,
+		    inputWeights  => inputWeightsTB,
+		    hiddenWeights => hiddenWeightsTB,
+		    hiddenBiases   => hiddenBiasesTB,
+		    outputBiases => outputBiasesTB,
+   		    outputs  => outputsTB);
 process
 begin
     
-    CLOCK_27_TB <= '0';
+    CLOCK_27TB <= '0';
     wait for 10 ns;
-    CLOCK_27_TB <= '1';
+    CLOCK_27TB <= '1';
     wait for 10 ns;
 end process;
 
 process
 begin
 
-	-- Initialize Inputs
-	for i in INPUTS_TB'range loop
-		INPUTS_TB(i, 0) <= to_unsigned(i + 1, NEURON_BIT_SIZE);
-		report "INPUTS: The value of i (rows) is " & integer'image(i);
+	-- Initialize inputs
+	for i in inputsTB'range loop
+		inputsTB(i, 0) <= to_unsigned(i + 1, NEURON_BIT_SIZE);
+		--report "inputs: The value of i (rows) is " & integer'image(i);
 	end loop;
 	
-	-- Initialize Biases
-	for j in BIASES_TB'range loop
-		BIASES_TB(j) <= "00";
-		report "BIASES: The value of j (rows) is " & integer'image(j);
+	-- Initialize hiddenBiases
+	for j in hiddenBiasesTB'range loop
+		hiddenBiasesTB(j, 0) <= "00";
+		--report "hiddenBiases: The value of j (rows) is " & integer'image(j);
 	end loop;
 
-	-- Initialize Weights
-	for k in WEIGHTS_TB'range(1) loop
-		for l in WEIGHTS_TB'range(2) loop
-			WEIGHTS_TB(k, l) <= to_unsigned(k, NEURON_BIT_SIZE);
-			report "WEIGHTS: The value of k (rows) is " & integer'image(k);
-			report "WEIGHTS: The value of l (columns) is " & integer'image(l);
+	-- Initialize outputBiases
+
+	-- Initialize inputWeights
+	for k in inputWeightsTB'range(1) loop
+		for l in inputWeightsTB'range(2) loop
+			inputWeightsTB(k, l) <= to_unsigned(k, NEURON_BIT_SIZE);
+			--report "inputWeights: The value of k (rows) is " & integer'image(k);
+			--report "inputWeights: The value of l (columns) is " & integer'image(l);
 		end loop;
 	end loop;
 
-	RESET_TB <= '0';
-	wait for 10 ns;
-	RESET_TB <= '1';
+	-- Initialize hiddenWeights
+	for m in hiddenWeightsTB'range(1) loop
+		for n in hiddenWeightsTB'range(2) loop
+		hiddenWeightsTB(m, n) <= to_unsigned(n, NEURON_BIT_SIZE);
+		end loop;
+	end loop;
 
-	wait for 100 ns;	
+	resetTB <= '1';
+	wait for 10 ns;
+	resetTB <= '0';
+	wait for 1000 ns;	
 end process;
 
 end architecture;
