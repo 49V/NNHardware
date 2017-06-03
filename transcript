@@ -5917,3 +5917,137 @@ restart; run 0.2us
 #    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
 # ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
 #    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# Compile of UBC_HDT_PACKAGE.vhd was successful.
+restart; run 0.2us
+# Loading work.types
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+add wave -position insertpoint sim:/fprop_tb/dut/*
+restart; run 0.2us
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# Compile of fprop.vhd was successful.
+# Compile of fprop_tb.vhd was successful.
+# Compile of nn_top.vhd was successful.
+# Compile of UBC_HDT_PACKAGE.vhd was successful.
+# 4 compiles, 0 failed with no errors. 
+restart; run 0.2us
+# Loading work.types
+# Loading work.fprop_tb(behavioural)
+# Loading work.fprop(behavioural)
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 0 ps  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 10 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 10 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 30 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 30 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 50 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 50 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 70 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 70 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 90 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 90 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+#    Time: 110 ns  Iteration: 0  Instance: /fprop_tb
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 130 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 130 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 150 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 150 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 170 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 170 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 190 ns  Iteration: 1  Instance: /fprop_tb/dut
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 190 ns  Iteration: 1  Instance: /fprop_tb/dut
