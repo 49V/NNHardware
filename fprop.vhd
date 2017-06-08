@@ -9,10 +9,10 @@ entity fprop is
 	Port(CLOCK_27: in std_logic;
 	     reset   : in std_logic;
 	     inputs  : in input_neuron_type;
-	     inputWeights : in weight_input_neuron_type;
-	     hiddenWeights : in weight_hidden_neuron_type;
-	     hiddenBiases  : in bias_hidden_neuron_type;
-	     outputBiases  : in bias_output_neuron_type;
+	     inputWeights : in input_weight_neuron_type;
+	     hiddenWeights : in hidden_weight_neuron_type;
+	     hiddenBiases  : in hidden_bias_neuron_type;
+	     outputBiases  : in output_bias_neuron_type;
 	     outputs : out output_neuron_type
 	     );
 -- Consider restructuring weights and biases into a single record
@@ -24,18 +24,24 @@ architecture behavioural of fprop is
 	-- These are our different states for fprop (Init, input-> hidden, hidden->output, done)
 	TYPE STATE_TYPE is (A, B, C, D, E); 
 		signal state : STATE_TYPE;
+	signal testHiddenZed : hidden_zed_neuron_type;
+	signal testOutputZed : output_zed_neuron_type;
 begin		 
 
 	process(all)
-	variable hiddenZed: zed_hidden_neuron_type := ((others => (others => "0000")));
-	variable outputZed: zed_output_neuron_type := ((others => (others => "0000")));
-	variable hiddenOutputs: hidden_neuron_type := ((others => (others => "00")));
+	-- This initializes these variables to zero for every neural network size and every "NEURON_BIT_SIZE"
+	variable hiddenZed: hidden_zed_neuron_type := ((others => (others => to_unsigned(0, NEURON_BIT_SIZE * 2))));
+	variable outputZed: output_zed_neuron_type := ((others => (others => to_unsigned(0, NEURON_BIT_SIZE * 2))));
+	variable hiddenOutputs: hidden_neuron_type := ((others => (others => to_unsigned(0, NEURON_BIT_SIZE))));
 	variable reportInteger: integer;
+	variable index : integer;
+	variable biasesFlag: integer;
 	begin
 	
 	if(reset) then
+		index := 0;
 		state <= A;
-
+	
 	elsif (rising_edge(CLOCK_27)) then
 		-- The layers shall be denoted as input, hidden, and output layers, or L1, L2, and L3
 		-- Where k is the kth neuron in the l + 1 layer, and j is the jth neuron in the lth layer
@@ -44,58 +50,63 @@ begin
 			
 			-- Input Layer to Hidden Layer
 			when A =>
-				for i in inputWeights'range(1) loop
-					for j in inputs'range(2) loop
-						for k in inputWeights'range(2) loop
-						hiddenZed(i, 0) := (hiddenZed(i, 0) + inputWeights(i, k) * inputs(k, j));
+				if (index < inputWeights'length(FIRST_INDEX)) then
+					-- You only want to add the hidden biases once per output element
+					hiddenZed(index, 0) := hiddenZed(index, 0) + hiddenBiases(index, 0);
+					for j in inputs'range(SECOND_INDEX) loop
+						for k in inputWeights'range(SECOND_INDEX) loop
+						hiddenZed(index, 0) := (hiddenZed(index, 0) + inputWeights(index, k) * inputs(k, j));
 					
 						-- Perceptron Activation function
-						if (hiddenZed(i, 0) > to_unsigned(0, NEURON_BIT_SIZE * 2)) then
-							hiddenOutputs(i, 0) := to_unsigned(1, NEURON_BIT_SIZE);
+						if (hiddenZed(index, 0) > to_unsigned(0, NEURON_BIT_SIZE * 2)) then
+							hiddenOutputs(index, 0) := to_unsigned(1, NEURON_BIT_SIZE);
 						else
-							hiddenOutputs(i, 0) := to_unsigned(0, NEURON_BIT_SIZE);
+							hiddenOutputs(index, 0) := to_unsigned(0, NEURON_BIT_SIZE);
 						end if;
 
 						end loop;
 					end loop;
-				end loop;
-
-				report "hiddenZed Index 0 " & integer'image(to_integer(hiddenZed(0,0)));
-				report "hiddenZed Index 1 " & integer'image(to_integer(hiddenZed(1,0)));				
+				index := index + 1;
+				
+				else
+				index := 0;
+				testHiddenZed <= hiddenZed;			
 				state <= B;
-			
+				end if;
+
 			-- Hidden Layer to Output Layer
 			when B =>
-				for i in hiddenWeights'range(1) loop
-					for j in hiddenOutputs'range(2) loop
-						for k in hiddenWeights'range(2) loop
-						report "-------------------INDEX i -----------------" & integer'image(i);
-						report "-------------------INDEX j -----------------" & integer'image(j);
-						report "-------------------INDEX k------------------" & integer'image(k);
-						outputZed(i, 0) := outputZed(i, 0) + hiddenWeights(i, k) * hiddenOutputs(k, j);
+				if (index < hiddenWeights'length(FIRST_INDEX)) then
+					-- You only want to add the output biases once per output element
+					outputZed(index, 0) := outputZed(index, 0) + outputBiases(index,0);
+					for j in hiddenOutputs'range(SECOND_INDEX) loop
+						for k in hiddenWeights'range(SECOND_INDEX) loop
 
-						if(outputZed(i, 0) > to_unsigned(0, NEURON_BIT_SIZE * 2)) then
-							outputs(i, 0) <= to_unsigned(1, NEURON_BIT_SIZE);
+						outputZed(index, 0) := outputZed(index, 0) + hiddenWeights(index, k) * hiddenOutputs(k, j);
+
+						if(outputZed(index, 0) > to_unsigned(0, NEURON_BIT_SIZE * 2)) then
+							outputs(index, 0) <= to_unsigned(1, NEURON_BIT_SIZE);
 						else
-							outputs(i, 0) <= to_unsigned(0, NEURON_BIT_SIZE);
+							outputs(index, 0) <= to_unsigned(0, NEURON_BIT_SIZE);
 						end if;
 
 						end loop;
 					end loop;
-				end loop;
+				index := index + 1;
 
-				report "outputZed is " & integer'image(to_integer(outputZed(0,0)));
-
+				else
+				index := 0;
+				testOutputZed <= outputZed;
 				state <= C;
+				end if;
 				
-			-- Output Layer
-			when C =>
-
-				state <= D;
-
 			-- Forward propagation complete
-			when D =>
+			when C =>
 				report "Forward propagation complete";
+				state <= D;
+			
+			when D =>
+				
 				state <= D;		
 
 			when others =>

@@ -11,10 +11,10 @@ architecture behavioural of fprop_tb is
 	Port(CLOCK_27 : in std_logic;
 	     reset    : in std_logic;
 	     inputs   : in input_neuron_type;
-             inputWeights  : in weight_input_neuron_type;
-	     hiddenWeights : in weight_hidden_neuron_type;
-	     hiddenBiases : in bias_hidden_neuron_type;
-	     outputBiases : in bias_output_neuron_type;
+             inputWeights  : in input_weight_neuron_type;
+	     hiddenWeights : in hidden_weight_neuron_type;
+	     hiddenBiases : in hidden_bias_neuron_type;
+	     outputBiases : in output_bias_neuron_type;
              outputs  : out output_neuron_type
 	     );
 	end component;
@@ -22,10 +22,10 @@ architecture behavioural of fprop_tb is
 signal CLOCK_27TB: std_logic;
 signal resetTB   : std_logic;
 signal inputsTB  : input_neuron_type;
-signal inputWeightsTB : weight_input_neuron_type;
-signal hiddenWeightsTB : weight_hidden_neuron_type;
-signal hiddenBiasesTB  : bias_hidden_neuron_type;
-signal outputBiasesTB : bias_output_neuron_type;
+signal inputWeightsTB : input_weight_neuron_type;
+signal hiddenWeightsTB : hidden_weight_neuron_type;
+signal hiddenBiasesTB  : hidden_bias_neuron_type;
+signal outputBiasesTB : output_bias_neuron_type;
 signal outputsTB  : output_neuron_type;
 
 begin
@@ -53,16 +53,16 @@ begin
 	-- Initialize inputs
 	for i in inputsTB'range loop
 		inputsTB(i, 0) <= to_unsigned(i + 1, NEURON_BIT_SIZE);
-		--report "inputs: The value of i (rows) is " & integer'image(i);
+		report "inputs: The value of i (rows) is " & integer'image(i);
 	end loop;
 	
 	-- Initialize hiddenBiases
 	for j in hiddenBiasesTB'range loop
-		hiddenBiasesTB(j, 0) <= "00";
+		hiddenBiasesTB(j, 0) <= to_unsigned(1, NEURON_BIT_SIZE);
 		--report "hiddenBiases: The value of j (rows) is " & integer'image(j);
 	end loop;
 
-	-- Initialize outputBiases
+	-- Initialize outputBiase
 
 	-- Initialize inputWeights
 	for k in inputWeightsTB'range(1) loop
@@ -78,6 +78,10 @@ begin
 		for n in hiddenWeightsTB'range(2) loop
 		hiddenWeightsTB(m, n) <= to_unsigned(n, NEURON_BIT_SIZE);
 		end loop;
+	end loop;
+
+	for o in outputBiasesTB'range(1) loop
+		outputBiasesTB(o, 0) <= to_unsigned(2, NEURON_BIT_SIZE);
 	end loop;
 
 	resetTB <= '1';
