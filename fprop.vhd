@@ -22,14 +22,14 @@ architecture behavioural of fprop is
 begin
 
 process(all)
-	variable zed: output_neuron_type;
+	variable zed: zed_neuron_type;
 begin
 	-- If RESET is enabled, initialize the Z to 0
 
 	if(RESET = '0') then
-		OUTPUTS(0) <= to_signed(0, NEURON_BIT_SIZE * 2);
-		OUTPUTS(1) <= to_signed(0, NEURON_BIT_SIZE * 2);
-		OUTPUTS(2) <= to_signed(0, NEURON_BIT_SIZE * 2);
+		OUTPUTS(0) <= to_signed(0, NEURON_BIT_SIZE); -- was double the neuron size
+		OUTPUTS(1) <= to_signed(0, NEURON_BIT_SIZE); -- was double the neuron size
+		OUTPUTS(2) <= to_signed(0, NEURON_BIT_SIZE); -- was double the neuron size
 		zed(0) := to_signed(0, NEURON_BIT_SIZE * 2);
 		zed(1) := to_signed(0, NEURON_BIT_SIZE * 2);
 		zed(2) := to_signed(0, NEURON_BIT_SIZE * 2);
@@ -52,9 +52,9 @@ begin
 				end loop;	
 
 				if((zed(i) + BIASES(i))> 0) then
-					OUTPUTS(i) <= to_signed(1, NEURON_BIT_SIZE*2);
+					OUTPUTS(i) <= to_signed(1, NEURON_BIT_SIZE); -- was double the neuron size
 				else
-					OUTPUTS(i) <= to_signed(0, NEURON_BIT_SIZE*2);
+					OUTPUTS(i) <= to_signed(0, NEURON_BIT_SIZE); -- was double the neuron size
 				end if;
 
 			end loop;

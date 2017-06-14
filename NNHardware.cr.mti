@@ -1,4 +1,4 @@
-C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop_tb.vhd {1 {vcom -work work -2002 -explicit C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop_tb.vhd
+C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop_tb.vhd {0 {vcom -work work -2002 -explicit C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop_tb.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -7,8 +7,11 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package types
 -- Compiling entity fprop_tb
 -- Compiling architecture behavioural of fprop_tb
+** Error: C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop_tb.vhd(45): Illegal concurrent statement.
+** Error: C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop_tb.vhd(46): No feasible entries for subprogram "TO_SIGNED".
+** Error: C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop_tb.vhd(85): VHDL Compiler exiting
 
-} {} {}} C:/Users/StewPC/Documents/UBC_HDT/NNHardware/nn_top.vhd {1 {vcom -work work -2002 -explicit C:/Users/StewPC/Documents/UBC_HDT/NNHardware/nn_top.vhd
+} {10.0 13.0} {}} C:/Users/StewPC/Documents/UBC_HDT/NNHardware/nn_top.vhd {1 {vcom -work work -2002 -explicit C:/Users/StewPC/Documents/UBC_HDT/NNHardware/nn_top.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -17,15 +20,5 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package types
 -- Compiling entity nn_top
 -- Compiling architecture behavioural of nn_top
-
-} {} {}} C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop.vhd {1 {vcom -work work -2008 -explicit C:/Users/StewPC/Documents/UBC_HDT/NNHardware/fprop.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package types
--- Compiling entity fprop
--- Compiling architecture behavioural of fprop
 
 } {} {}}
