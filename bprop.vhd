@@ -3,15 +3,18 @@ use IEEE.STD_LOGIC_1164.all;
 use IEEE.numeric_std.all;
 use work.types.all;
 
--- I will need to create a 3D Array in the future. For the time being, focus on matrix multiplication!
--- i.e only propagate one layer
 entity bprop is
-	Port(CLOCK_27: in std_logic;
-	     RESET   : in std_logic;
-	     INPUTS  : in input_neuron_type;
-	     WEIGHTS : in weight_neuron_type;
-	     BIASES  : in bias_neuron_type;
-	     OUTPUTS : out output_neuron_type
+	Port(CLOCK_27	: in std_logic;
+	     RESET   	: in std_logic;
+	     GO		 	: in std_logic;
+	     Y 			: in expected_neuron_type;
+	     Z  		: in activation_neuron_type;
+	     W 			: in weight_neuron_type;
+
+	     dCdB		: out bias_neuron_type;
+	     dCdW		: out weight_neuron_type;
+	     RDY		: out std_logic;
+	     BUSY		: out std_logic
 	     );
 end bprop;
 -- Weighted Inputs
