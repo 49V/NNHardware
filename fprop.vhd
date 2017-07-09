@@ -14,42 +14,53 @@ entity fprop is
 	     OUTPUTS : out output_neuron_type
 	     );
 end fprop;
+-- Weighted Inputs
 
 architecture behavioural of fprop is
 	signal q: std_logic;
+	signal prev_inputs: input_neuron_type;
 begin
 
-	process(all)
-	begin
-	-- If RESET is enabled, initialize the OUTPUTS to 0
-	if(rising_edge(CLOCK_27)) then
+process(all)
+	variable zed: zed_neuron_type;
+begin
+	-- If RESET is enabled, initialize the Z to 0
 
-		if(RESET = '0') then
-			for i in OUTPUTS'range(1) loop
-				OUTPUTS(i) <= to_signed(0, NEURON_BIT_SIZE - 1);
-			end loop;	
+	if(RESET = '0') then
+		OUTPUTS(0) <= to_signed(0, NEURON_BIT_SIZE); -- was double the neuron size
+		OUTPUTS(1) <= to_signed(0, NEURON_BIT_SIZE); -- was double the neuron size
+		OUTPUTS(2) <= to_signed(0, NEURON_BIT_SIZE); -- was double the neuron size
+		zed(0) := to_signed(0, NEURON_BIT_SIZE * 2);
+		zed(1) := to_signed(0, NEURON_BIT_SIZE * 2);
+		zed(2) := to_signed(0, NEURON_BIT_SIZE * 2);
+		prev_inputs(0, 0) <= to_signed(0, NEURON_BIT_SIZE);
+		prev_inputs(1, 0) <= to_signed(0, NEURON_BIT_SIZE);
 
-		else
-		-- The layers shall be denoted as input, hidden, and output layers, or L1, L2, and L3
-		-- Where k is the kth neuron in the l + 1 layer, and j is the jth neuron in the lth layer
-		-- Outputs O[N2, 1] = Wkj[N2, N1] * Ij[N1, 1]
+	elsif(RESET = '1') then
+		if(rising_edge(CLOCK_27)) then
+			-- The layers shall be denoted as input, hidden, and output layers, or L1, L2, and L3
+			-- Where k is the kth neuron in the l + 1 layer, and j is the jth neuron in the lth layer
+			-- OUTPUTS O[N2, 1] = Wkj[N2, N1] * Ij[N1, 1]
 			for i in WEIGHTS'range(1) loop
 				for j in INPUTS'range(2) loop
 					for k in WEIGHTS'range(2) loop
-					OUTPUTS(i) <= WEIGHTS(i, k) * INPUTS(k, j); 
+						if(prev_inputs(k,j) /= INPUTS(k,j)) then
+							zed(i) := zed(i) + WEIGHTS(i, k) * INPUTS(k, j); 
+						end if;
+						prev_inputs(k,j) <= INPUTS(k,j);
 					end loop;
-				end loop;
-			end loop;	
+				end loop;	
+
+				if((zed(i) + BIASES(i))> 0) then
+					OUTPUTS(i) <= to_signed(1, NEURON_BIT_SIZE); -- was double the neuron size
+				else
+					OUTPUTS(i) <= to_signed(0, NEURON_BIT_SIZE); -- was double the neuron size
+				end if;
+
+			end loop;
 		end if;
 	end if;
-	end process;
+end process;
 	
-	process(all)
-	begin
-
-	if(rising_edge(CLOCK_27)) then
-
-	end if;
-	end process;
 
 end architecture;
